@@ -15,7 +15,7 @@ name = "Sherzod"
 
 age = 28
 
-print(name + " " , age)
+# print(name + " " , age)
 
 
 # o'zgaruvchilarga nom berishda python ichida ishlatiladigan mahsus
@@ -30,3 +30,52 @@ print(name + " " , age)
 # async               except              lambda              with
 # await               finally             nonlocal            yield
 # break               for                 not      
+
+
+
+fruits = ["apple", "orange", "banana"]
+x, y, z = fruits
+# print(x, y, z)
+
+
+x = "awesome"
+
+def myFunc():
+    global x
+    x = "fantastic"
+myFunc()
+
+print(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
