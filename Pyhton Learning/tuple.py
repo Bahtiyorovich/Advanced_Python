@@ -51,7 +51,7 @@ thistuple = ("apple", "banana", "cherry")
 y = ("orange",)
 thistuple += y
 
-print(thistuple)
+# print(thistuple)
 
 
 # Eslatma: Tupledagi elementlarni olib tashlay olmaysiz.
@@ -64,25 +64,42 @@ thistuple = tuple(y)
 
 
 
+# amaliyot
+
+countries = ("Uzb", "En", "Ru", "Kz", "Tur")
+
+print(type(countries))
 
 
+print(len(countries))
+
+sortList = list(countries) 
+
+print(sorted(sortList))
+print(sorted(sortList, reverse = True))
+
+# print(sortList.reverse())
+
+n = list(range(120, 1200))
+z = []
+# print(n)
+[z.append(x) for x in n if x % 2 == 0]
+
+k = sum(z)
+
+print(k)
+
+h = min(z)
+j = max(z)
+
+print(j - h)
+
+print(len(z))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(z[:20])
+print(z[-20:])
+print(z[530:550])
 
 
 

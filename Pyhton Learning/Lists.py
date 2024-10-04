@@ -313,6 +313,63 @@ fruits = ['apple', 'banana', 'cherry']
 x = fruits.index("cherry")
 
 
+# amaliyot
+friends = list(("Abror", "Bekzod", "Sohibjon"))
+# print(friends)
+
+[print(f"{x} do'stim bugun baliq yegani boramiz!") for x in friends]
+
+
+numbers = list((10, -17, 0.5))
+# print(numbers)
+
+# print(numbers[0]**2)
+
+# x = numbers.pop(-1)
+# print(x)
+
+
+# print(numbers)
+
+numbers[-1] = 25
+# print(numbers)
+
+
+tarixiy_shaxslar = ["Buxoriy", "Ibn Sino", "Amir Temur"]
+zamonaviy_shaxslar = ["Sardor Raximxon", "Anvar Nazrullayev"]
+
+a = tarixiy_shaxslar.pop(1)
+b = zamonaviy_shaxslar.pop(-1)
+
+print(f"Men tarixiy shaxslardan {a} bilan, Zamonaviy shaxslardan {b} bilan birgalikda do'st bo'lib yashashni hohlar edim")
+
+
+my_friends = []
+
+# while 3 > len(my_friends):
+#     x = input("Do'stingiz ismini kiriting: ")
+#     my_friends.append(x)
+
+# print(my_friends)
+
+# print(zamonaviy_shaxslar.remove())
+
+
+print(zamonaviy_shaxslar[:1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
