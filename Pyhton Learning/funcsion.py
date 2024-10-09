@@ -284,14 +284,99 @@ carInfo = car(model = 'Malibu', color = 'Black', price = '$ 30000')
 
 # print(carInfo)
 
+# import math
+uzunlik = lambda pi, r : 2*pi*r
+# print(uzunlik(math.pi,10))
+
+
+
+product = lambda x, y : x ** y
+# print(product(3, 2))
 
 
 
 
+# map() FUNKSIYASI
+# Bu funksiya argument sifatida ro'yxat (yoki lug'at) va boshqa bir funksiyani
+ # qabul qilib, ro'yxat elementlariga qabul qilingan 
+ # funksya yordamida ishlov beradi. Tushunarli bo'lish uchun quyidagi 
+ # misolni ko'ramiz.
+
+from math import sqrt
+
+sonlar = list(range(11)) # 0 dan 10 gacha sonlar ro'yxati
+ildizlar = list(map(sqrt,sonlar))
+# print(ildizlar)
+# Yuqoridagi misolda avval 0 dan 10 gacha sonlar ro'yxatini tuzib oldik, 
+# keyin esa map funksiyasiga ro'yxat va sqrt funksiyasini uzatib, 
+# ro'yxatdagi barcha sonlarning ildizini hisoblab oldik.
+
+# map() funksiyasi map obyekt qaytargani sababli, qaytgan obyektni ro'yxatga
+ # o'tkazib olish uchun list() funksiyasidan foyydalandik.
+
+
+# sonlar = list(range(11)) # 0 dan 10 gacha sonlar ro'yxati
+
+def daraja2(x):
+    """Berilgan sonning kvadratini qaytaruvchi funksiya"""
+    return x*x
+
+# print(list(map(daraja2,sonlar))) # sonlar ning kvadratini hisoblaymiz
+
+
+kvadratlar = list(map(lambda x:x*x,sonlar))
+# print(kvadratlar)
+
+ismlar = ['hasan','husan','olim','umid']
+# print(list(map(lambda matn:matn.upper(),ismlar)))
+
+# Bu funksiya ham argument sifatida ro'yxat va boshqa funskiyani qabul qilib
+#  oladi va berilgan ro'yxat elementlarini berilgan funksiya yordamida saralaydi. 
+#  Bunda argument sifatida uzatilgan funksiya
+#  mantiqiy qiymat qaytarishi kerak (True yoki False).
+
+
+import random as r
+sonlar = r.sample(range(100), 10)
+
+def juftmi(x):
+    """x juft bo'lsa True aks xolda False qaytaruvchi funksiya"""
+    return x % 2 == 0
+
+juft_sonlar = list(filter(juftmi, sonlar))
+# print(sonlar)
+# print(juft_sonlar)
+
+juftSonlar = list(filter(lambda x:x%2==0, sonlar))
+
+# print(juftSonlar)
 
 
 
+# Keling endi filter() funksiyasi yordamida matnlarni saralashga 
+# ham misollar ko'raylik.
 
+# Quyidagi dastur mevalar ro'yxatidan b harfiga boshlanuvchi mevalarni ajratib oladi.
+#  Bu yerda biz matnlarga tegishli bo'lgan .startswith() metodidan foydalandik. 
+#  Bu metod, berilgan matn shu harfdan boshlanadimi yoki yo'q tekshiradi va True 
+#  yoki False qiymat qaytaradi.
+
+mevalar = ['olma','anor','anjir','shaftoli',"o'rik","tarvuz","qovun","banan"]
+
+mevalar_b = list(filter(lambda meva:meva.startswith('b'),mevalar))
+print(mevalar_b)
+['banan']
+
+# Quyidagi dastur esa mevalar ro'yxatidan nomi 5 yoki undan kam harfdan 
+# iborat mevalarni saralab oladi.
+
+mevalar2 = list(filter(lambda meva:len(meva)<=5, mevalar))
+print(mevalar2)
+['olma', 'anor', 'anjir', "o'rik", 'qovun', 'banan']
+
+# Topingchi, quyidagi kod qanday vazifani bajaradi?
+
+list(filter(lambda meva:(meva.startswith('a') and meva.endswith('r')), mevalar))
 
 
 
