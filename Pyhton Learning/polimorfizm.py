@@ -111,21 +111,78 @@ talaba3.fanga_yozil(fan2)
 
 # print(talaba3.get_fanlar())
 
-print(talaba3.remove_fan('tarix'))
+# print(talaba3.remove_fan('tarix'))
 
-print(talaba3.get_fanlar())
-
-
+# print(talaba3.get_fanlar())
 
 
 
+class Professor(Shaxs):
+    def __init__(self, ism, familya, passport, t_yil, lavozim):
+        super().__init__(ism, familya, passport, t_yil)
+        self.lavozim = lavozim
+        self.projects = []
+        
+    def get_lavozim(self):
+        return self.lavozim
+    
+    def set_projects(self, new_project):
+        self.projects.append(new_project)
+        
+    def get_projects(self):
+        return [project for project in self.projects]
+
+# prof1 = Professor("Sherzod", "Yoqubov", "PythonProgrammer", 1997, "Senior Python dev")
+# prof1.set_projects("E-commers web site")
+# print(prof1.get_projects())
+# print(prof1.get_info())
 
 
+class User(Shaxs):
+    def __init__(self, ism, familya, passport, t_yil, email, phone, id_raqam):
+        super().__init__(ism, familya, passport, t_yil)
+        self.email = email
+        self.phone = phone
+        self.id_raqam = id_raqam
+        
+    def get_id(self):
+        return self.id_raqam
+    
+    def get_email(self):
+        return self.email
+    
+    def get_phone(self):
+        return self.phone
+    
+user1 = User("Sher", "Yoqubov", "AB8669657", 1997, "test@gmail.com", "+998933609798", "d9875e17")
+# print(user1.get_email())
 
 
+class Admin(User):
+    def __init__(self,ism, familya, passport, t_yil, email, phone, id_raqam, role):
+        super().__init__(ism, familya, passport, t_yil, email, phone, id_raqam)
+        self.role = role
+        self.users = []
+        
+    def get_role(self):
+        return self.role
+    
+    def add_user(self, user):
+        self.users.append(user)
+    
+    def get_users(self):
+        return [user.get_id() for user in self.users]
+        
+    
+    def ban_user(self):
+        return "user bloklandi"
 
 
+admin1 = Admin("John","Smith","AC8999966", 1998, "exp@gmail.com", "998966554755", "ef5547d", 'admin')
+# print(admin1.get_info())
+admin1.add_user(user1)
 
+print(admin1.get_users())
 
 
 
