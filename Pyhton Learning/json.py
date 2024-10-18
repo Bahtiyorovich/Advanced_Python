@@ -44,7 +44,14 @@ print(person_json)
 
 
 
+# json.load()
+# Bu funksiya JSON fayllarning tarkibini Pythonga yuklab olish uchun ishlatiladi.
 
+# filename = 'bemor.json'
+# with open(filename) as f:
+#     bemor = json.load(f)
+    
+# print(type(bemor))
 
 
 
