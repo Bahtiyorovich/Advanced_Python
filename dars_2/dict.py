@@ -1,7 +1,7 @@
-# Ro'yxat - bu tartiblangan va o'zgaruvchan to'plam. Takroriy a'zolarga ruxsat beradi.
+# List - bu tartiblangan va o'zgaruvchan to'plam. Takroriy a'zolarga ruxsat beradi.
 # Tuple - bu tartiblangan va o'zgarmas to'plam. Takroriy a'zolarga ruxsat beradi.
-# Toʻplam tartibsiz, oʻzgarmas* va indekslanmagan toʻplamdir. Takroriy a'zolar yo'q.
-# Lug'at tartibli** va o'zgaruvchan to'plamdir. Takroriy a'zolar yo'q.
+# set - Toʻplam tartibsiz, oʻzgarmas* va indekslanmagan toʻplamdir. Takroriy a'zolar yo'q.
+# dict - Lug'at tartibli** va o'zgaruvchan to'plamdir. Takroriy a'zolar yo'q.
 
 
 this_dict = {
