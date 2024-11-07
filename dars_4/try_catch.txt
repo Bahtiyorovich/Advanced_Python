@@ -1,0 +1,1 @@
+Siz faylni o'riyapsiz: Try except finally
