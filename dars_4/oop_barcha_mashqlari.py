@@ -222,21 +222,529 @@ class Notebooks(Texnika):
     def more_info(self):
         return f"Texnika: Brendi: {self.brand},\n Modeli: {self.model},\n Turi: {self.type},\n Video Cartsi: {self.video_card},\n RAM: {self.ram},\n Display o'lchami: {self.display}"
 
-class Television(Notebooks):
-    def __init__(self, size, display):
-        super().__init__(display)
+class Television(Texnika):
+    def __init__(self,brand, model, type, size, display):
+        super().__init__(brand, model, type)
         self.size = size
+        self.display = display
 
     def more_info(self):
         return f"{self.get_info()}, {self.size}, {self.display}"
 
-class Smartphones(Television):
-    def __init__(self, size, sim_count):
-        super().__init__(size)
+class Smartphones(Texnika):
+    def __init__(self,brand, model, type, size, sim_count):
+        super().__init__(brand, model, type)
         self.sim_count = sim_count
+        self.size = size
 
     def more_info(self):
-        return f"{self.more_info()} Sim karta: {self.sim_count}"
+        return f"{self.get_info()} Sim karta: {self.sim_count}"
 
-texnika = Texnika("artel", "mx", "Phone")
-notebook = Notebooks()
+notebook = Notebooks("Dell", "XPS 13", "Notebook", "Intel Iris", "16GB", "13.4 inch")
+television = Television("Samsung", "QLED", "Television", "55 inch", "4K")
+smartphone = Smartphones("Apple", "iPhone 14", "Smartphone", "6.1 inch", 2)
+
+# Ma'lumotlarni chiqaramiz
+# print(notebook.more_info())
+# print(television.more_info())
+# print(smartphone.more_info())
+
+
+# 2-masala
+
+class Transport:
+    def __init__(self, brand, model, type):
+        self.brand = brand
+        self.model = model
+        self.type = type
+
+    def get_info(self):
+        print(f"Transport >> {self.brand} brendi ostida, Modeli: {self.model}, turi: {self.type}")
+
+class ElectroCar(Transport):
+    def __init__(self, brand, model, type, battery_life, chargin_time):
+        super().__init__(brand, model, type)
+        self.battery_life = battery_life
+        self.chargin_time = chargin_time
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"Batareya yaroqlilik muddati: {self.battery_life}, bir marta to'liq zaryadlash vaqti: {self.chargin_time}")
+
+class SportCar(Transport):
+    def __init__(self, brand, model, type, motor, color):
+        super().__init__(brand, model, type)
+        self.motor = motor
+        self.color = color
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.motor} motori bilan jixozlangan, {self.color} rangida")
+
+class Truck(Transport):
+    def __init__(self, brand, model, type, motor, height, long, weight):
+        super().__init__(brand, model, type)
+        self.motor = motor
+        self.height = height
+        self.long = long
+        self.weight = weight
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.motor}, {self.height}, {self.long}, {self.weight}")
+
+# tesla = ElectroCar("Tesla", "Model S", "Electric Car", "402 miles", "8 hours")
+# bmw_m5 = SportCar("BMW", "M5 Competition", "Sports Car", "4.4L V8", "Black")
+# truck = Truck("Volvo", "FH16", "Truck", "540 HP", "4 meters", "7 meters", "12 tons")
+#
+# # Ma'lumotlarni chiqaramiz
+# tesla.more_info()
+# bmw_m5.more_info()
+# truck.more_info()
+
+
+
+# 3-masala
+class University:
+    def __init__(self, university):
+        self.university = university
+
+    def get_info(self):
+        print(f"{self.university}")
+
+class Staff(University):
+    def __init__(self, university, first_name, last_name, age):
+        super().__init__(university)
+        self.name = first_name
+        self.surname = last_name
+        self.age = age
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.name}, {self.surname}, {self.age}")
+
+class Student(University):
+    def __init__(self, university, first_name, last_name, age, group):
+        super().__init__(university)
+        self.name = first_name
+        self.surname = last_name
+        self.age = age
+        self.group = group
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.name}, {self.surname}, {self.age}, {self.group}")
+
+class Teacher(University):
+    def __init__(self, university, first_name, last_name, position, subject):
+        super().__init__(university)
+        self.name = first_name
+        self.surname = last_name
+        self.position = position
+        self.subject = subject
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.name}, {self.surname}, {self.position}, {self.subject}")
+
+class OtherStaff(University):
+    def __init__(self, university, first_name, last_name, position):
+        super().__init__(university)
+        self.name = first_name
+        self.surname = last_name
+        self.position = position
+
+    def more_info(self):
+        print(f"{self.get_info()}"
+              f"{self.name}, {self.surname}, {self.position}")
+
+# staff = Staff("Namdu", "Ali", "Valiyev", 26)
+# student = Student("Namdu", "John", "Smith", 21, "201")
+# teacher = Teacher("Namdu", "Shox", "Temur", "mutahasis", "Fizik")
+# other_staff = OtherStaff("Namdu", "Bobur", "Mansurov", "professor")
+#
+# staff.more_info()
+# student.more_info()
+# teacher.more_info()
+# other_staff.more_info()
+
+
+# 4-masala
+
+class Object(University):
+    def __init__(self, university, name):
+        super().__init__(university)
+        self.name = name
+
+    def object_info(self):
+        print(f"{self.get_info()}, {self.name}")
+
+class Computer(Object):
+    def __init__(self, university, name, soni, tizimi, holati):
+        super().__init__(university, name)
+        self.soni = soni
+        self.tizimi = tizimi
+        self.holati = holati
+
+    def object_more_info(self):
+        print(f"{self.get_info()}, {self.name}, {self.soni}, {self.tizimi}, {self.holati}")
+
+class Mebel(Computer):
+    def __init__(self, university, name, soni, tizimi, holati):
+        super().__init__(university, name, soni, tizimi, holati)
+
+    def furniture(self):
+        print(f"{self.object_more_info()}")
+
+object = Object("Namdu", "Fizika Laboratoriyasi")
+hp = Computer("Namdu", "hp", 20, "Microsoft", "new")
+furniture = Mebel('Namdu', "special chair", 10, "", "new")
+
+object.object_info()
+hp.object_more_info()
+furniture.object_more_info()
+
+
+# OOP 3 - topshiriq
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        return f"Depozit: {amount} so'm qo'shildi. Joriy balans: {self.balance} so'm."
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            return f"Pul yechildi: {amount} so'm. Joriy balans: {self.balance} so'm."
+        else:
+            return "Balans yetarli emas."
+
+    def check_balance(self):
+        return f"Joriy balans: {self.balance} so'm."
+
+
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+    def is_square(self):
+        return self.length == self.width
+
+
+class StudentMe:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        self.grades = []
+
+    def add_grade(self, grade):
+        self.grades.append(grade)
+
+    def calculate_average(self):
+        return sum(self.grades) / len(self.grades) if self.grades else 0
+
+    def print_summary(self):
+        average = self.calculate_average()
+        return f"Ism: {self.name}, Yosh: {self.age}, O'rtacha baho: {average}"
+
+
+import math
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * (self.radius ** 2)
+
+    def circumference(self):
+        return 2 * math.pi * self.radius
+
+    def diameter(self):
+        return 2 * self.radius
+
+
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self.current_page = 1
+
+    def open(self, page):
+        self.current_page = page
+        return f"Kitob {page}-sahifada ochildi."
+
+    def turn_page(self):
+        self.current_page += 1
+        return f"Sahifa ochildi: {self.current_page}."
+
+    def restart(self):
+        self.current_page = 1
+        return "Kitob boshidan ochildi."
+
+
+class Dog:
+    total_dogs = 0
+
+    def __init__(self):
+        Dog.total_dogs += 1
+
+    @classmethod
+    def get_total_dogs(cls):
+        return cls.total_dogs
+
+class Computer:
+    total_computers = 0
+    computers_list = []
+
+    def __init__(self, model):
+        self.model = model
+        Computer.add_computer(self)
+
+    @classmethod
+    def add_computer(cls, computer):
+        cls.computers_list.append(computer)
+        cls.total_computers += 1
+
+
+class Employee:
+    total_employees = 0
+    employees_list = []
+
+    def __init__(self, name):
+        self.name = name
+        Employee.hire_employee(self)
+
+    @classmethod
+    def hire_employee(cls, employee):
+        cls.employees_list.append(employee)
+        cls.total_employees += 1
+
+class Television:
+    average_screen_size = 0
+    total_screen_size = 0
+    total_televisions = 0
+
+    def __init__(self, screen_size):
+        self.screen_size = screen_size
+        Television.update_average_screen_size(screen_size)
+
+    @classmethod
+    def update_average_screen_size(cls, screen_size):
+        cls.total_televisions += 1
+        cls.total_screen_size += screen_size
+        cls.average_screen_size = cls.total_screen_size / cls.total_televisions
+
+
+class Course:
+    total_courses = 0
+    courses_list = []
+
+    def __init__(self, course_name):
+        self.course_name = course_name
+        Course.add_course(self)
+
+    @classmethod
+    def add_course(cls, course):
+        cls.courses_list.append(course)
+        cls.total_courses += 1
+
+
+class Math:
+    @staticmethod
+    def multiply(a, b):
+        return a * b
+
+
+class Temperature:
+    @staticmethod
+    def celsius_to_fahrenheit(celsius):
+        return celsius * 9/5 + 32
+
+
+class Distance:
+    @staticmethod
+    def miles_to_kilometers(miles):
+        return miles * 1.60934
+
+
+class Utility:
+    @staticmethod
+    def is_even(number):
+        return number % 2 == 0
+
+
+class Time:
+    @staticmethod
+    def seconds_to_minutes(seconds):
+        minutes = seconds // 60
+        remaining_seconds = seconds % 60
+        return (minutes, remaining_seconds)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

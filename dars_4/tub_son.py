@@ -23,10 +23,27 @@ while True:
 # Ma'lumot o'rnida qabul qilasizlar!, agar masalada biror shart bajarilmaguncha tsikl(takrorlanish) bajarilishi davomiyligi talab qilinsa," while "operatoridan foydalaning,
 # agar ro'yxat yoki to'plam ustida amal bajarish kerak bo'lsa "for" operatoridan foydalaning
 
+nums = []
+i = 0
+while i <= 10:
+    son = int(input(">>>"))
+    if son > 0:
+        nums.append(son)
+    i += 1
 
+print(nums)
 
+nums = []
+i = 0
+while True:
+    son = int(input(">>>"))
+    if son > 0:
+        nums.append(son)
+        if i == 10:
+            break
+    i += 1
 
-
+print(nums)
 
 
 
