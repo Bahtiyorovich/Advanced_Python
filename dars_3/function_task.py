@@ -9,8 +9,6 @@
 #   Yosh: 27
 #
 # ko'rinishiga print qilib bersin.
-from audioop import reverse
-
 
 def user_data(**data):
     """User ma'lumotlarini chop etuvchi funksiya"""
@@ -283,6 +281,13 @@ def expensive_product(products):
     return f"Eng qimmat mahsulot: {max_product}, narxi: {max_price} so'm"
 
 # print(expensive_product(products))
+
+def my_range(a, b, c):
+    """qadamlar"""
+    for i in range(a, b, c):
+        print(i, end=" ")
+
+# my_range(2, 100, 3)
 
 
 

@@ -1,0 +1,12 @@
+[
+    {"question": "Pythonning asosiy maqsadi nima?", "answer": "Dasturlash"},
+    {"question": "Python dasturlash tilimi?", "answer": "Ha"},
+    {"question": "Python qaysi turdagi tilga kiradi?", "answer": "Obyektga yo'naltirilgan"},
+    {"question": "Pythonning yaratilgan yili?", "answer": "1991"},
+    {"question": "Pythonning eng so'ngi versiyasi qaysi?", "answer": "3.11"},
+    {"question": "Pythonning yaratgani kim?", "answer": "Guido van Rossum"},
+    {"question": "Pythonda qanday ma'lumot turlari bor?", "answer": "Raqam, satr"},
+    {"question": "Pythonning asosiy vazifasi nima?", "answer": "Dasturlash"},
+    {"question": "Python tilida funksiyalar qanday yoziladi?", "answer": "def"},
+    {"question": "Pythonda sikl operatori?", "answer": "for"}
+]
