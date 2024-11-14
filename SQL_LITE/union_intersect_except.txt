@@ -1,0 +1,155 @@
+UNION:
+1-topshiriq: Barcha talabalar va o'qituvchilarning ismlari va familiyalarini birlashtiring,
+lekin faqat ismlari unli bilan boshlanadiganlarni kiriting (A, E, I, O yoki U).
+SQL
+SELECT first_name, last_name
+FROM students
+WHERE first_name LIKE 'A%'
+   OR first_name LIKE 'E%'
+   OR first_name LIKE 'I%'
+   OR first_name LIKE 'O%'
+   OR first_name LIKE 'U%'
+UNION
+SELECT first_name, last_name
+FROM teachers
+WHERE first_name LIKE 'A%'
+   OR first_name LIKE 'E%'
+   OR first_name LIKE 'I%'
+   OR first_name LIKE 'O%'
+   OR first_name LIKE 'U%';
+
+
+
+2-topshiriq: Barcha talabalar va o'qituvchilarning ism va familiyalarini birlashtiring va
+natijalarni birinchi navbatda familiya uzunligi bo'yicha (o'sish tartibida), so'ngra alifbo tartibida familiyasi bo'yicha tartiblang.
+
+SQL
+SELECT first_name, last_name
+FROM students
+UNION
+SELECT first_name, last_name
+FROM teachers
+ORDER BY LENGTH(last_name), last_name;
+
+3-topshiriq: Talabalar va o'qituvchilarning ismlari va familiyalarini, jumladan, "manba" nomli
+maxsus ustunni birlashtiring, bu shaxs talabalar yoki o'qituvchilar jadvalidan kelganligini ko'rsatadi.
+Natijalarni "manba" ustuni, keyin esa familiya bo'yicha tartiblang.
+
+SQL
+SELECT first_name, last_name, 'talaba' AS manba
+FROM students
+UNION
+SELECT first_name, last_name, 'o\'qituvchi' AS manba
+FROM teachers
+ORDER BY manba, last_name;
+
+
+4-topshiriq: Eng yuqori id qiymatiga ega boʻlgan eng yaxshi 3 nafar talaba va oʻqituvchilarni toping.
+Ularning ism va familiyalarini birlashtiring va natijalarni id bo'yicha kamayish tartibida tartiblang.
+SQL
+SELECT id, first_name, last_name
+FROM students
+ORDER BY id DESC
+LIMIT 3
+
+UNION ALL
+
+SELECT id, first_name, last_name
+FROM teachers
+ORDER BY id DESC
+LIMIT 3
+
+ORDER BY id DESC;
+
+INTERSECT
+5-topshiriq: Buyurtmalar va jo'natmalar jadvallarida bir xil buyurtma miqdori bo'lgan
+mahsulotlarni topadigan so'rovni yozing.
+SQL
+SELECT product_id, quantity
+FROM orders
+INTERSECT
+SELECT product_id, quantity
+FROM shipments;
+
+6-topshiriq: Buyurtmalar jadvalidagi buyurtma miqdori bir xil bo'lgan mahsulotlarni va
+jo'natish jadvalidagi jo'natish miqdorini topadigan so'rovni yozing, bunda miqdori 5 dan katta yoki teng.
+SQL
+SELECT order_quantity AS quantity
+FROM Buyurtmalar
+WHERE order_quantity >= 5
+
+INTERSECT
+
+SELECT shipment_quantity AS quantity
+FROM Jonatmalar
+WHERE shipment_quantity >= 5;
+
+7-topshiriq: Buyurtmalar va jo'natmalar jadvallarida bir xil mahsulot va miqdorga ega
+bo'lgan buyurtma identifikatorlarini topadigan so'rovni yozing.
+SQL
+SELECT o.order_id
+FROM Buyurtmalar AS o
+JOIN Jonatmalar AS s
+ON o.product_id = s.product_id
+AND o.order_quantity = s.shipment_quantity;
+
+
+8-topshiriq: Buyurtmalar va jo‘natmalar jadvallarida bir xil mahsulot va miqdorga ega
+bo‘lgan jo‘natish identifikatorlarini topadigan so‘rovni yozing, mahsulot nomi bo‘yicha o‘sish tartibida tartiblangan.
+SQL
+SELECT s.shipment_id
+FROM Jo'natmalar AS s
+JOIN Buyurtmalar AS o
+ON s.product_id = o.product_id
+AND s.shipment_quantity = o.order_quantity
+JOIN Mahsulotlar AS p
+ON s.product_id = p.product_id
+ORDER BY p.product_name ASC;
+
+
+
+
+EXCEPT
+
+9-topshiriq: Buyurtmalar jadvalida mavjud bo'lgan, lekin jo'natmalar jadvalida mavjud bo'lmagan
+mahsulotlarni topadigan so'rovni yozing.
+SQL
+SELECT product_id FROM orders
+EXCEPT
+SELECT product_id FROM shipments
+
+10-topshiriq: Buyurtmalar jadvalida emas, jo'natish jadvalida mavjud bo'lgan, mahsulot nomi bo'yicha
+o'sish tartibida tartiblangan mahsulotlarni topadigan so'rovni yozing.
+SQL
+SELECT p.product_name
+FROM Mahsulotlar AS p
+JOIN Jo'natmalar AS s ON p.product_id = s.product_id
+WHERE p.product_id NOT IN (SELECT product_id FROM Buyurtmalar)
+ORDER BY p.product_name ASC;
+
+
+11-topshiriq: Buyurtmalar jadvalida 10 dan katta yoki unga teng bo'lgan buyurtma identifikatorlarini
+topadigan so'rovni yozing, lekin jo'natmalar jadvalida emas.
+SQL
+SELECT order_id
+FROM Buyurtmalar
+WHERE order_quantity >= 10
+AND order_id NOT IN (SELECT order_id FROM Jo'natmalar);
+
+
+12-topshiriq: Miqdori kamayish bo'yicha buyurtmalar jadvalida emas, balki jo'natmalar jadvalida
+5 dan kam bo'lgan jo'natma identifikatorlarini topadigan so'rovni yozing.
+
+SQL
+SELECT shipment_id
+FROM Jo'natmalar
+WHERE shipment_quantity < 5
+AND shipment_id NOT IN (SELECT order_id FROM Buyurtmalar)
+ORDER BY shipment_quantity DESC;
+
+
+
+
+
+
+

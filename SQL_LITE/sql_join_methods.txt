@@ -1,0 +1,178 @@
+Vazifa:
+
+Join1. "locations" asosiy jadaval unga "countries" dan "country_name" ustunini qoshing.
+
+SQL;
+SELECT locations.country_id, countries.country_name
+FROM locations
+LEFT JOIN countries ON countries.country_id = locations.country_id
+UNION
+SELECT locations.country_id, countries.country_name
+FROM countries
+LEFT JOIN locations ON countries.country_id = locations.country_id;
+
+
+Join2. "departments" asosiy jadval unga "locations" dan "city", "state_province" va "street_address" ustunlarini qoshing.
+SQL
+SELECT departments.location_id, locations.city, locations.state_province, locations.street_address
+FROM departments
+LEFT JOIN locations ON departments.location_id = locations.location_id
+UNION
+SELECT departments.location_id, locations.city, locations.state_province, locations.street_address
+FROM locations
+LEFT JOIN departments ON locations.location_id = departments.location_id;
+
+Join3. "locations" asosiy jadval unga "countries" dan "region_id" Europe ga teng bo'lgan elementlarning "country_name" ustunini qoshing.
+SQL
+SELECT locations.country_id, countries.country_name
+FROM locations
+LEFT JOIN countries ON countries.region_id = 1;
+
+
+Join4. "departments" asosiy jadval unga "locations" dan country_id US ga teng bo'lgan elementlarning "city", "state_province" va "street_address" ustunlarini qo'shing.
+SQL
+SELECT departments.location_id, locations.city, locations.state_province, locations.street_address
+FROM departments
+LEFT JOIN locations ON locations.country_id = "US";
+
+Join5. "employees" asosiy jadval undan first_name, last_name va phone_number ustunlarni oling keyin unga "departments" dan "department_name" ustunini qoshing.
+SQL
+SELECT employees.first_name, employees.last_name, employees.phone_number, departments.department_name
+FROM employees
+LEFT JOIN departments;
+
+Join6. "employees" asosiy jadval undan first_name, last_name va phone_number ustunlarni oling keyin unga managerni first_name ustunini qo'shing va bu ustunni manager_name deb nomlang..
+SQL
+SELECT employees.first_name, employees.last_name, employees.phone_number
+FROM employees;
+
+
+SQLite-da JOIN operatori bir nechta jadvaldagi ma'lumotlarni o'zaro bog'lash orqali natija yaratishga yordam beradi.
+JOIN metodlarining turlari quyidagilar:
+
+1. INNER JOIN
+INNER JOIN ikkala jadvalda ham mos keladigan qiymatlar bor bo'lgandagina natija qaytaradi.
+
+Misol: mijozlar va buyurtmalar jadvallari bor. mijozlar jadvalida id va ism bor,
+buyurtmalar jadvalida mijoz_id va mahsulot bor deylik.
+
+sql
+Copy code
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM mijozlar
+INNER JOIN buyurtmalar ON mijozlar.id = buyurtmalar.mijoz_id;
+Bu yerda faqat ikkala jadvalda mos keluvchi id va mijoz_id bo'lgan qiymatlar chiqadi.
+
+2. LEFT JOIN
+LEFT JOIN natijasiga chap (birinchi jadval) jadvaldagi barcha qatorlarni va mos kelgan bo'lsa,
+o'ng jadvaldagi qatorlarni qo'shadi. Agar mos kelmasa, o'ng jadvaldan NULL qaytariladi.
+
+Misol:
+
+sql
+Copy code
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM mijozlar
+LEFT JOIN buyurtmalar ON mijozlar.id = buyurtmalar.mijoz_id;
+Bu yerda mijozlar jadvalidagi barcha mijozlar chiqadi, hattoki ular buyurtmalar jadvalida mavjud bo'lmasa ham.
+buyurtmalar yo'q joylarda NULL qaytariladi.
+
+3. RIGHT JOIN
+SQLite-da RIGHT JOIN to'g'ridan-to'g'ri qo'llab-quvvatlanmaydi,
+lekin uni LEFT JOIN va jadvallarning o'rnini almashtirish orqali hosil qilish mumkin.
+RIGHT JOIN da natijaga o'ng (ikkinchi jadval) jadvaldagi barcha qatorlar va
+chap jadvaldagi mos keladigan qiymatlar kiradi.
+
+Misol (RIGHT JOIN simulyatsiyasi):
+
+sql
+Copy code
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM buyurtmalar
+LEFT JOIN mijozlar ON buyurtmalar.mijoz_id = mijozlar.id;
+Bu yerda barcha buyurtmalar qatorlari chiqadi, hattoki mos keluvchi mijozlar bo'lmasa ham.
+
+4. FULL OUTER JOIN
+SQLite-da FULL OUTER JOIN to'g'ridan-to'g'ri qo'llab-quvvatlanmaydi.
+Biroq, LEFT JOIN va RIGHT JOINni UNION bilan birlashtirib, FULL OUTER JOINni simulyatsiya qilish mumkin.
+Bu usul ikkala jadvaldagi barcha qatorlarni natijaga kiritadi, mos kelmagan joylarda esa NULL bo'ladi.
+
+Misol (FULL OUTER JOIN simulyatsiyasi):
+
+sql
+Copy code
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM mijozlar
+LEFT JOIN buyurtmalar ON mijozlar.id = buyurtmalar.mijoz_id
+UNION
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM buyurtmalar
+LEFT JOIN mijozlar ON buyurtmalar.mijoz_id = mijozlar.id;
+Bu misolda mijozlar va buyurtmalar jadvallaridagi barcha ma'lumotlar mos kelmagan joylarda NULL bilan chiqadi.
+
+5. CROSS JOIN
+CROSS JOIN har bir qator uchun barcha kombinatsiyalarni yaratadi, ya'ni har bir mijozlar
+ qatori buyurtmalardagi barcha qatorlar bilan juftlanadi.
+
+Misol:
+
+sql
+Copy code
+SELECT mijozlar.ism, buyurtmalar.mahsulot
+FROM mijozlar
+CROSS JOIN buyurtmalar;
+Bu yerda har bir mijoz uchun barcha buyurtmalar juftligi chiqariladi.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

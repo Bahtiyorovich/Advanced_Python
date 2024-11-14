@@ -1,0 +1,234 @@
+SQL LITE HAQIDA MA'LUMOT
+SQLite bu – qulay, ixcham, va yengil SQL ma'lumotlar bazasi bo'lib, asosan kichik va
+o'rta hajmdagi ma'lumotlar bilan ishlash uchun mo'ljallangan.
+Boshqa ko'pchilik SQL ma'lumotlar bazalari serverli arxitekturaga ega bo'lsa,
+SQLite server-siz (serverless) formatda ishlaydi. Bu esa uning integratsiyasini soddalashtiradi,
+chunki u butunlay bitta faylda saqlanadi va uni osongina turli ilovalar bilan bog'lash mumkin.
+
+SQLite'ning asosiy xususiyatlari:
+
+Server-sizligi: SQLite server talab qilmaydi, ya'ni uni oddiy fayl sifatida ishlatsa bo'ladi va
+ilova bilan birga ishlaydi.
+
+Kichik hajmi va ixchamligi: Ma'lumotlar bazasi faqat kerakli kod va ma'lumotlarni saqlaydi,
+shu sababdan u juda kichik hajmda bo'ladi (odatda bir necha megabayt).
+
+Platformadan mustaqilligi: SQLite turli operatsion tizimlarda (Windows,
+Linux, MacOS, Android va iOS) ishlay oladi, bu esa ilovalarni ko'p platformalarda qo‘llash imkonini beradi.
+
+O‘rnatishning soddaligi: Boshqa ko‘p ma'lumotlar bazalari kabi murakkab sozlashni talab qilmaydi,
+uni dastur ichida osongina sozlash va ishlatish mumkin.
+
+Yuqori tezlik: Ma'lumotlarga murojaat qilish tezligi yuqori bo'lib,
+ayniqsa kichik va o'rta hajmdagi ilovalar uchun bu katta afzallik.
+
+ACID xususiyatlari: SQLite tranzaktsiyalarni qo'llab-quvvatlaydi va
+u ACID (Atomicity, Consistency, Isolation, Durability) xususiyatlariga ega bo'lib,
+ma'lumotlarning ishonchliligini ta'minlaydi.
+
+SQLite ko'pincha quyidagi holatlarda ishlatiladi:
+
+Mobil ilovalar va kichik hajmdagi veb ilovalarda.
+Qurilmaga bog‘liq bo‘lmagan va joyda foydalaniladigan ilovalarda.
+Ilovalar uchun vaqtinchalik yoki qo‘shimcha saqlash vositasi sifatida.
+Agar siz Python’da ishlayotgan bo‘lsangiz, sqlite3 moduli orqali SQLite bilan osongina bog‘lanib,
+CRUD (Create, Read, Update, Delete) amallarini bajarishingiz mumkin.
+
+1). Ma'lumotlar bazasida yangi jadval yaratish uchun ishlatiladi.
+
+CREATE TABLE Students(
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NUL,
+    age INTEGER,
+    grade TEXT
+);
+
+2). Jadvalga yangi qator qo'shish
+INSERT INTO Students(name, age, grade) VALUES ("Ali", 20, "A");
+
+3). Jadvaldan ma'lumotni o'qish
+SELECT * FROM Students; Jadvaldagi barcha ma'lumotni olish
+
+4). Agar faqat bitta ustunni chiqarishni hohlasangiz
+SELECT name FROM Students;
+
+5). WHERE shartli ma'lumot olish
+SELECT * FROM Students WHERE grade = "A"; Bu kod grade ustuni "A" ga teng bo‘lgan qatorlarni chiqaradi.
+
+6). Ma'lumotni yangilash
+UPDATE Students SET age = 21 WHERE name = "Ali"; Bu kod name "Ali" bo‘lgan qatorda age qiymatini 21 ga o‘zgartiradi.
+
+7). Ma'lumotlarni o'chirish
+DELETE FROM Students WHERE name = "Ali"; Bu kod name "Ali" bo‘lgan qatorni o‘chiradi.
+
+8). Jadvalni butunlay o'chirish uchun DROP TABLE
+DROP TABLE Students;  Bu kod students jadvalini va undagi barcha ma'lumotlarni o‘chiradi.
+
+9). Cheklangan ma'lumot olish
+SELECT * FROM Students LIMIT 5; Bu kod students jadvalidan faqat birinchi beshta qatorni chiqaradi.
+
+10). Ma'lumotlarni tartiblash
+SELECT * FROM Students ORDER BY age DESC; Bu kod students jadvalidagi ma'lumotlarni age ustuni bo‘yicha kamayish tartibida chiqaradi.
+
+11). COUNT, SUM, AVG, MIN, MAX: Agregat funksiyalar
+Bu funksiyalar jadvaldagi ma'lumotlarni umumlashtirish uchun ishlatiladi.
+
+SELECT COUNT(*) FROM Students; Bu kod students jadvalidagi qatorlar sonini hisoblaydi.
+
+SELECT AVG(age) FROM Students; Bu kod students jadvalidagi o‘rtacha yoshni chiqaradi.
+
+SELECT MAX(age) FROM Students; Bu kod students jadvalidagi eng katta age qiymatini chiqaradi.
+
+1. Primary Key (Asosiy kalit)
+Primary Key – jadvaldagi har bir qator uchun unikal identifikator bo'lib, u boshqa qatorlarda takrorlanmasligi kerak. Bu kalit jadvaldagi har bir qatorni noyob tarzda aniqlash imkonini beradi.
+
+Vazifasi: Jadvaldagi har bir yozuvni noyob qilish va ularni osongina izlash uchun identifikator sifatida ishlaydi.
+Xususiyatlari:
+Unikal bo'lishi kerak, ya'ni hech bir qatorning primary key qiymati bir-biriga teng bo'lmasligi kerak.
+Bo'sh bo'lishi mumkin emas.
+Misol:
+Bitta customers jadvali bor deb tasavvur qilaylik. Biz customer_id ustunini asosiy kalit (primary key) qilib belgilaymiz.
+
+sql
+Copy code
+CREATE TABLE customers (
+    customer_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT
+);
+Bu yerda customer_id har bir mijoz uchun unikal identifikator bo'ladi.
+Har bir mijozning o'ziga xos customer_id qiymati bo'ladi, shu sababli mijozlar orasida chalkashlik bo'lmaydi.
+Yangi yozuv qo'shish:
+sql
+Copy code
+INSERT INTO customers (name, email) VALUES ('Ali', 'ali@example.com');
+INSERT INTO customers (name, email) VALUES ('Laylo', 'laylo@example.com');
+Har bir yozuv avtomatik ravishda noyob customer_id qiymatiga ega bo'ladi.
+
+2. Foreign Key (Tashqi kalit)
+Foreign Key – bir jadvaldagi ustun boshqa jadvaldagi asosiy kalitga (primary key) ishora qilishini bildiradi.
+Bu kalitlar orasidagi bog‘lanishni yaratadi va ma'lumotlarning referensial yaxlitligini (integritetini) saqlaydi.
+
+Vazifasi: Bir jadvaldagi qatorning boshqa jadvaldagi qator bilan bog‘lanishini ta'minlash.
+Xususiyatlari:
+Tashqi kalit (foreign key) bo‘lgan ustun, u ishora qilgan asosiy kalitga ega qiymat bilan mos kelishi kerak.
+Bu jadval va yozuvlar orasida bog'lanishni o'rnatadi, natijada biror yozuv o'chirilganda yoki o'zgartirilganda,
+bog'liq yozuvlar ham tegishli tarzda yangilanadi yoki o'chiriladi.
+Misol:
+Endi orders jadvali mavjud deb tasavvur qilaylik, va har bir buyurtma customers
+jadvalidagi mijozlardan biriga tegishli bo'lsin.
+
+sql
+Copy code
+CREATE TABLE orders (
+    order_id INTEGER PRIMARY KEY,
+    order_date TEXT,
+    customer_id INTEGER,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+Bu yerda customer_id ustuni foreign key bo'lib, u customers jadvalidagi customer_id ustuniga ishora qiladi.
+Bu orders jadvalidagi har bir buyurtma bir mijozga tegishli ekanligini bildiradi.
+Yangi yozuv qo'shish:
+
+sql
+Copy code
+INSERT INTO orders (order_date, customer_id) VALUES ('2024-11-01', 1);
+INSERT INTO orders (order_date, customer_id) VALUES ('2024-11-02', 2);
+
+Bu buyruqlar orders jadvaliga ikkita yangi yozuv qo'shadi:
+
+Birinchi buyurtma customer_id qiymati 1 bo‘lgan mijozga tegishli.
+Ikkinchi buyurtma customer_id qiymati 2 bo‘lgan mijozga tegishli.
+
+Bog'lanishni tushuntirish:
+
+Yuqorida customer_id ustuni foreign key sifatida customers jadvalidagi customer_id ustuniga ishora qiladi.
+Agar biror mijoz customers jadvalidan o‘chirib yuborilsa,
+foreign key constraint orqali orders jadvalidagi ushbu mijozga bog‘langan barcha buyurtmalarni
+ham o‘chirish yoki yangilash mumkin bo‘ladi.
+
+Bu usul ma'lumotlarning butligini saqlashga va jadval orasidagi bog'lanishni boshqarishga yordam beradi.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

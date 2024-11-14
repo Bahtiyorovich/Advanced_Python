@@ -1,0 +1,34 @@
+Avvalambor xatolik chiqqanda, xatolik xabarini oxirgi qatorlarini o'qing, u yerda qaysi qatorda qanday xato chiqqani yozilgan bo'ladi!
+
+Ko'p uchraydigan xatoliklar:
+
+🔢 SyntaxError - Sintaksis xatosi: Bu xato Python dasturlash tilining sintaksis qoidalariga rioya qilinmaganida yuz beradi. Masalan, noto'g'ri qavs yopilishi, nuqta, vergul yoki noto'g'ri identatsiya.
+
+🔢 NameError - Nom xatosi: Bu xato, dasturda mavjud bo'lmagan o'zgaruvchi yoki funksiya ishlatilganda paydo bo'ladi. Masalan:
+my_variable = 5
+print(my_vairable)
+
+🔢 TypeError - Tip xatosi: Bu xato, o'zgaruvchilar yoki funksiyalar uchun noto'g'ri turdagi qiymatlar ishlatilganda yuzaga keladi. Masalan, raqam va matn turidagi o'zgaruvchilarni qo'shib bo'lmaydi.
+3.1 TypeError: 'bool, int yoki nimadir' object is not subscriptable - bool, int yoki nimadir type dagi obyektga nisbatan [] orqali murojaat qilib bo'lmaydi. Ya'ni subscriptable emas. Dict va list subscriptable. Demak siz dict yoki list deb o'ylagan o'zgaruvchingiz aslida boshqa narsa. Xato Qaysi qatordaligini ham yozib qo'ygan bo'ladi.
+
+🔢 IndexError - Indeks xatosi: Bu xato, ro'yxat, tuple yoki boshqa to'plamlarda mavjud bo'lmagan indeks orqali murojaat qilinganda sodir bo'ladi.
+
+🔢 KeyError - Kalit xatosi: Bu xato, lug'at (dictionary) tuzilmasida mavjud bo'lmagan kalit orqali elementga murojaat qilinganda yuz beradi.
+
+🔢 AttributeError - Atribut xatosi: Bu xato, ob'ektning mavjud bo'lmagan atributiga murojaat qilinganda ro'y beradi.
+
+🔢 ValueError - Qiymat xatosi: Bu xato, funksiyaga yoki metodga mos bo'lmagan qiymat berilganda paydo bo'ladi.
+
+🔢 ZeroDivisionError - Nolga bo'lish xatosi: Bu xato, har qanday sonni nolga bo'lishga urinishda ro'y beradi.
+
+🔢 FileNotFoundError - Fayl topilmadi xatosi: Bu xato, o'qish yoki yozish uchun ochilgan fayl yo'qligida yuz beradi.
+
+🔢🔢 ImportError - Import xatosi: Bu xato, mavjud bo'lmagan modul yoki uning komponentlari import qilinishga urinishda sodir bo'ladi.
+
+🔢🔢 ModuleNotFoundError - Modul topilmadi xatosi: Bu xato, mavjud bo'lmagan modulni import qilishga urinishda ro'y beradi. Masalan, Tashqi paketni pip install qilmasdan chaqirganda ham sodir bo'ladi.
+
+🔢🔢 IndentationError - Identatsiya xatosi: Bo'sh joy tashlashdagi xatolik.
+
+🔢🔢 ConnectionError - Aloqa xatosi: Bu xato, tarmoq aloqasi bilan bog'liq muammolar paydo bo'lganda yuzaga keladi. Masalan, internetdagi biron serverga ulanishda muammo yuz berganida.
+
+🔢🔢 TimeoutError - Vaqt tugashi xatosi: Bu xato, ma'lum bir operatsiya uchun ajratilgan maksimal vaqt tugaganda sodir bo'ladi.
